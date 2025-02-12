@@ -69,19 +69,19 @@ As a user, I want to view drug information and interactions
 
 ### Mockups
 
-- Welcome Page![](<img width="262" alt="WelcomePage" src="https://github.com/user-attachments/assets/45473ce6-7b06-40b3-b3a2-4e1e84d5af75" />
+- Welcome Page![Welcome Page](<img width="262" alt="WelcomePage" src="https://github.com/user-attachments/assets/45473ce6-7b06-40b3-b3a2-4e1e84d5af75" />
 )
 
-- Login Page![](<img width="264" alt="LoginPage" src="https://github.com/user-attachments/assets/cdcb8604-26db-4982-8f96-52804f569fe0" />
+- Login Page![Login Page](<src="https://github.com/user-attachments/assets/cdcb8604-26db-4982-8f96-52804f569fe0" />
 )
 
-- Dashboard![](<img width="248" alt="Dashboard" src="https://github.com/user-attachments/assets/c1ebc01f-237d-4034-9bca-43cb794248f8" />
+- Dashboard![Dashboard](<src="https://github.com/user-attachments/assets/c1ebc01f-237d-4034-9bca-43cb794248f8" />
 )
 
-- Medication Tracking View![](<img width="243" alt="Medication" src="https://github.com/user-attachments/assets/d76ddbdc-a0b0-4774-bb8f-202b0cd372bb" />
+- Medication Tracking View![Medication Tracking View](<src="https://github.com/user-attachments/assets/d76ddbdc-a0b0-4774-bb8f-202b0cd372bb" />
 )
 
-- Reports & Insights Page ![](<img width="265" alt="Reports" src="https://github.com/user-attachments/assets/1c460e30-1c01-48c4-b40d-941d0224ef3f" />
+- Reports & Insights Page ![Reports & Insights Page](<src="https://github.com/user-attachments/assets/1c460e30-1c01-48c4-b40d-941d0224ef3f" />
 )
 
 ### Data
