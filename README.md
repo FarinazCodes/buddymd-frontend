@@ -86,6 +86,8 @@ As a user, I want to view drug information and interactions
 
 ### Data
 
+![Data Relation](./src/assets/images/DataRelation.png)
+
 Users (ID, Name, Email, Password, Preferences)
 
 Medications (Name, Dosage, Frequency, Start/End Date, Side Effects, Notes)
@@ -114,8 +116,6 @@ GET /reports – Fetch medication adherence trend
 
 Initialize React project and Express server
 
-Implement Firebase authentication
-
 Develop UI wireframes in Figma
 
 - Sprint 2: Core Features
@@ -139,6 +139,8 @@ Perform bug fixes and security improvements
 ---
 
 ## Future Implementations
+
+- Implement Firebase authentication
 
 - Recipes tailored to side effects – Suggest meals based on medications and their side effects to minimize discomfort and enhance nutrition.
 
