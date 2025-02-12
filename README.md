@@ -69,15 +69,20 @@ As a user, I want to view drug information and interactions
 
 ### Mockups
 
-- Welcome Page![Welcome Page](./src/assets/WelcomePage.png)
+- Welcome Page
+  ![Welcome Page](./src/assets/WelcomePage.png)
 
-- Login Page![Login Page](./src/assets/LoginPage.png)
+- Login Page
+  ![Login Page](./src/assets/LoginPage.png)
 
-- Dashboard![Dashboard](./src/assets/Dashboard.png)
+- Dashboard
+  ![Dashboard](./src/assets/Dashboard.png)
 
-- Medication Tracking View![Medication Tracking View](./src/assets/Medication.png)
+- Medication Tracking View
+  ![Medication Tracking View](./src/assets/Medication.png)
 
-- Reports & Insights Page![Reports & Insights Page](./src/assets/Reports.png)
+- Reports & Insights Page
+  ![Reports & Insights Page](./src/assets/Reports.png)
 
 ### Data
 
