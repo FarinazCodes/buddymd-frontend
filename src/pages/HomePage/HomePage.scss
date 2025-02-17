@@ -1,0 +1,14 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/globals" as *;
+
+.homepage {
+  &__header {
+    padding: 0;
+    margin: 0;
+  }
+  &__logo {
+    width: 150px;
+    height: 150px;
+  }
+}

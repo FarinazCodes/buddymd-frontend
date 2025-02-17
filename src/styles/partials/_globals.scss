@@ -1,0 +1,8 @@
+@use "./fonts" as *;
+@use "./variables" as *;
+
+body {
+  background-color: $primary-color-2;
+  font-family: "Newsreader", sans-serif;
+  overflow-x: hidden;
+}

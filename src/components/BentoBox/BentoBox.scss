@@ -1,0 +1,44 @@
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  align-items: start;
+}
+
+.bento-box {
+  background-color: #f8bfbf;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+
+  &__title {
+    transform: rotate(-90deg);
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  &--medications {
+    height: 342px;
+    width: 90px;
+  }
+
+  &--recipes {
+    height: 215px;
+    width: 90px;
+  }
+  &--insights {
+    height: 200px;
+    width: 90px;
+  }
+
+  &--health-tips {
+    height: 246px;
+    width: 90px;
+  }
+}
