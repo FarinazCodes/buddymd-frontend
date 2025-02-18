@@ -1,6 +1,11 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/globals" as *;
+
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
   gap: 0.5rem;
   margin-top: 1rem;
   padding: 1rem;
@@ -20,12 +25,16 @@
   &__title {
     transform: rotate(-90deg);
     font-size: 1.2rem;
-    text-align: center;
+    white-space: nowrap;
+    text-align: end;
+    padding-right: 5rem;
+    color: $primary-color-2;
   }
 
   &--medications {
     height: 342px;
     width: 90px;
+    grid-row: span 2;
   }
 
   &--recipes {
@@ -35,10 +44,31 @@
   &--insights {
     height: 200px;
     width: 90px;
+    grid-row: span 2;
   }
 
   &--health-tips {
     height: 246px;
     width: 90px;
   }
+}
+
+.title-medications {
+  padding-right: 15rem;
+  padding-bottom: 5rem;
+}
+
+.title-recipes {
+  padding-right: 10rem;
+  padding-bottom: 5rem;
+}
+
+.title-insights {
+  padding-right: 9rem;
+  padding-bottom: 5rem;
+}
+
+.title-health-tips {
+  padding-right: 7rem;
+  padding-bottom: 5rem;
 }

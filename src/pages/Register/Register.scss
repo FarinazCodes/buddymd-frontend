@@ -1,0 +1,78 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/globals" as *;
+
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: $primary-color-2;
+
+  &__container {
+    width: 240px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  &__error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #444;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: $secondary-color-2;
+    outline: none;
+    margin-top: 5px;
+    transition: all 0.3s;
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+  &__button {
+    background-color: $primary-color-1;
+    color: $primary-color-2;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+
+    &--cancel {
+      background-color: transparent;
+      color: #333;
+      border: 1px solid $primary-color-1;
+      margin-top: 10px;
+    }
+  }
+}
