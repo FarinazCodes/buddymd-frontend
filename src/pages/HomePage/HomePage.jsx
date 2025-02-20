@@ -8,11 +8,6 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <div className="homepage">
-      {/* ✅ Fix: Updated link to match the correct route */}
-      <Link to="/profile">
-        <button>View Profile</button>
-      </Link>
-
       {/* Calendar */}
       <CustomCalendar />
 

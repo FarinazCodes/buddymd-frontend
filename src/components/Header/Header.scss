@@ -1,10 +1,31 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/globals" as *;
+
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: $primary-color-2;
+
   &__logo-container {
-    padding: 0;
-    margin: 0;
+    display: flex;
+    align-items: center;
   }
+
   &__logo {
     width: 150px;
     height: 150px;
+  }
+
+  // &__profile-link {
+  //   text-decoration: none;
+  // }
+
+  &__profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
   }
 }

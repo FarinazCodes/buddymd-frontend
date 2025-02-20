@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
 import axios from "axios";
 import "./Profile.scss";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const auth = getAuth();
@@ -44,6 +45,7 @@ const Profile = () => {
   return (
     <div className="profile">
       <h2 className="profile__title">User Profile</h2>
+
       {user ? (
         <div className="profile__info">
           <p className="profile__email">
@@ -64,12 +66,20 @@ const Profile = () => {
               />
             </label>
           </div>
-          <button
-            className="profile__button profile__button--update"
-            onClick={handleUpdatePhoneNumber}
-          >
-            Update Phone Number
-          </button>
+          {/* ✅ Button Container for Alignment */}
+          <div className="profile__buttons">
+            <button
+              className="profile__button profile__button--update"
+              onClick={handleUpdatePhoneNumber}
+            >
+              Update Phone Number
+            </button>
+
+            {/* ✅ Home Button BELOW "Update Phone Number" */}
+            <Link to="/home" className="profile__button profile__button--home">
+              Home
+            </Link>
+          </div>
         </div>
       ) : (
         <p className="profile__loading">Loading...</p>

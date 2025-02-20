@@ -6,10 +6,8 @@
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  padding-left: 3rem;
   border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -53,20 +51,26 @@
 }
 
 .profile__button {
-  padding: 10px 15px;
+  padding: 10px 10px;
   margin-top: 20px;
   font-size: 16px;
   border: none;
-
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile__button--update {
   background-color: $primary-color-1;
-  color: white;
+  color: $primary-color-2;
 }
 
-.profile__loading {
-  font-size: 18px;
-  color: #777;
+.profile__button--home {
+  background-color: white;
+  color: $primary-color-1;
+  border: 2px solid $primary-color-1;
+  margin-top: 10px;
+  padding: 8px 10px;
+  text-decoration: none;
+  display: inline-block;
 }
