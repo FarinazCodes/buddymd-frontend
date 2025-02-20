@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Login.scss";
 
 const Login = () => {
@@ -15,9 +16,30 @@ const Login = () => {
     setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/home");
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // ✅ Get Firebase ID Token
+      const token = await user.getIdToken();
+
+      // ✅ Send Token to Backend for Verification (Optional)
+      await axios.post(
+        "http://localhost:5001/api/auth/verify",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      sessionStorage.setItem("token", token); // ✅ Store token for future API calls
+
+      navigate("/home"); // ✅ Navigate after successful login
     } catch (error) {
+      console.error("Login Error:", error);
       setError(error.message);
     }
   };

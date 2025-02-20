@@ -13,6 +13,7 @@ import Header from "./components/Header/Header";
 import Welcome from "./pages/Welcome/Welcome";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
+import Profile from "./components/Profile/Profile";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -35,6 +36,7 @@ function App() {
           path="/home"
           element={user ? <HomePage /> : <Navigate to="/login" />}
         />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="/medications"
           element={user ? <Medication /> : <Navigate to="/login" />}
