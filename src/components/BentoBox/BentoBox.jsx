@@ -20,6 +20,7 @@ const BentoBox = () => {
       className: "bento-box--insights",
       title: "Insights",
       titleClass: "title-insights",
+      onClick: () => navigate("/insights"),
     },
     {
       className: "bento-box--health-tips",

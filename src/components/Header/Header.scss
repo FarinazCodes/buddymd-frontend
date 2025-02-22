@@ -19,13 +19,10 @@
     height: 150px;
   }
 
-  // &__profile-link {
-  //   text-decoration: none;
-  // }
-
   &__profile-image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    margin-right: 4rem;
   }
 }

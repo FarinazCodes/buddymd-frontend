@@ -3,7 +3,6 @@
 @use "../../styles/partials/globals" as *;
 
 .medication {
-  /* Instead of height: 100vh */
   &__calendar {
     margin-bottom: 20px;
   }
@@ -18,10 +17,24 @@
 
   &__title {
     background-color: #fca5a5;
-    padding: 8px 16px;
+    padding: 0.5px 12px;
     border-radius: 0px 12px 12px 0px;
+    font-size: 12px;
     font-weight: bold;
+    display: inline-block;
     color: black;
+  }
+
+  &__gif-container {
+    width: 120%;
+    background-color: $secondary-color-1;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 1rem;
+    margin-left: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__content {
@@ -47,14 +60,15 @@
     border: none;
     margin-top: 16px;
     align-self: center;
+    margin-right: 2.5rem;
   }
 }
 
 .popup {
   position: fixed;
-  top: 50px;
+  top: 120px;
   left: 0;
-  width: 100%;
+  width: 87%;
   height: calc(100% - 50px);
   background: $secondary-color-1;
   display: flex;
@@ -89,26 +103,54 @@
   &__title {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    padding-left: 2rem;
   }
-
-  &__input {
-    width: 100%;
+  &__select {
+    width: 30%;
     padding: 12px;
+    padding-right: 2px;
+    margin-left: 6.5rem;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid $primary-color-1;
     font-size: 16px;
-    background: #f2f2f7;
+    background: $secondary-color-2;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  &__input {
+    width: 70%;
+    padding: 12px;
+    margin-left: 2rem;
+    border-radius: 8px;
+    border: 1px solid $primary-color-1;
+    font-size: 16px;
+    background: $primary-color-5;
     text-align: center;
     margin-bottom: 20px;
   }
 
   &__button {
-    width: 100%;
-    padding: 12px;
+    width: 80%;
     border-radius: 8px;
     border: none;
     font-size: 18px;
     font-weight: bold;
+    margin-left: 2rem;
+
+    &--cancel {
+      margin-top: 15px;
+      background-color: $primary-color-1;
+      margin-bottom: 20px;
+      padding-top: 10px;
+      color: white;
+    }
+
+    &--save {
+      background-color: $primary-color-3;
+      border: 2px solid $primary-color-1;
+      background-color: white;
+      color: black;
+    }
   }
 }

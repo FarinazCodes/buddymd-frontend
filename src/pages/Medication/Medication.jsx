@@ -9,6 +9,8 @@ const Medication = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [medications, setMedications] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [adherenceStatus, setAdherenceStatus] = useState({});
+
   const [newMedication, setNewMedication] = useState({
     name: "",
     dosage: "",
@@ -48,19 +50,48 @@ const Medication = () => {
     return () => unsubscribe();
   }, [auth]);
 
-  // Fetch medications from backend
+  // ✅ Fetch medications and adherence logs
   const fetchMedications = async () => {
     if (!currentUser) return;
 
     try {
       const token = await currentUser.getIdToken();
+
+      // Fetch Medications
       const response = await axios.get(
         "http://localhost:5001/api/medications",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setMedications(response.data);
+
+      const meds = response.data;
+      setMedications(meds);
+
+      // Fetch adherence logs for each medication
+      const adherenceMap = {};
+      await Promise.all(
+        meds.map(async (med) => {
+          try {
+            const adherenceResponse = await axios.get(
+              `http://localhost:5001/api/adherence/${med.id}`, // ✅ Pass `med.id`
+              { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            if (adherenceResponse.data.length > 0) {
+              adherenceMap[med.id] = adherenceResponse.data[0].status; // ✅ Store latest status
+            }
+          } catch (error) {
+            console.error(
+              `Error fetching adherence log for medication ${med.id}:`,
+              error
+            );
+          }
+        })
+      );
+
+      // ✅ Update adherence state
+      setAdherenceStatus(adherenceMap);
     } catch (error) {
       console.error("Error fetching medications:", error);
     }
@@ -77,7 +108,40 @@ const Medication = () => {
     setNewMedication({ ...newMedication, [e.target.name]: e.target.value });
   };
 
-  // Save medication and use the stored phone number
+  // ✅ Add Adherence Status
+  const addAdherenceLog = async (medicationId, status) => {
+    if (!currentUser) {
+      console.error("User not authenticated");
+      return;
+    }
+
+    try {
+      const token = await currentUser.getIdToken();
+      await axios.post(
+        "http://localhost:5001/api/adherence",
+        {
+          medication_id: medicationId,
+          date: new Date().toISOString().split("T")[0], // ✅ Log for today's date
+          status: status, // "Taken", "Missed", or "Skipped"
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      console.log(
+        `Adherence logged: ${status} for medication ID ${medicationId}`
+      );
+
+      // ✅ Update local state immediately to persist status
+      setAdherenceStatus((prevStatus) => ({
+        ...prevStatus,
+        [medicationId]: status,
+      }));
+    } catch (error) {
+      console.error("Error logging adherence:", error.response?.data || error);
+    }
+  };
+
+  // ✅ Save a Medication
   const saveMedication = async () => {
     if (!currentUser) {
       console.error("User not authenticated");
@@ -110,6 +174,7 @@ const Medication = () => {
     }
   };
 
+  // ✅ Delete a Medication
   const deleteMedication = async (id) => {
     if (!currentUser) {
       console.error("User not authenticated");
@@ -135,23 +200,59 @@ const Medication = () => {
   return (
     <div className="medication">
       <CustomCalendar />
-      <div className="medication__section">
-        <img src={MedsGif} alt="Medication GIF" className="medication__gif" />
-
+      <div className="medication__title">
         <h2>Medications</h2>
+      </div>
+      <div className="medication__section">
+        <div className="medication__gif-card">
+          <div className="medication__gif-container">
+            <img
+              src={MedsGif}
+              alt="Medication GIF"
+              className="medication__gif"
+            />
+          </div>
+        </div>
+
         <ul className="medication__list">
           {medications.map((med) => (
             <li key={med.id}>
               {med.name} - {med.dosage} {med.dosage_unit} - Starts:{" "}
               {med.start_date} at {med.schedule_time}{" "}
               {med.end_date ? `until ${med.end_date}` : ""}
-              <button onClick={() => deleteMedication(med.id)}>
-                Delete
-              </button>{" "}
+              <button onClick={() => deleteMedication(med.id)}>Delete</button>
+              {/* ✅ Show adherence status */}
+              {!adherenceStatus[med.id] ? (
+                <div className="medication__actions">
+                  <button
+                    className="medication__button medication__button--taken"
+                    onClick={() => addAdherenceLog(med.id, "Taken")}
+                  >
+                    Taken
+                  </button>
+                  <button
+                    className="medication__button medication__button--missed"
+                    onClick={() => addAdherenceLog(med.id, "Missed")}
+                  >
+                    Missed
+                  </button>
+                  <button
+                    className="medication__button medication__button--skipped"
+                    onClick={() => addAdherenceLog(med.id, "Skipped")}
+                  >
+                    Skipped
+                  </button>
+                </div>
+              ) : (
+                <p className="medication__status">
+                  Status: <strong>{adherenceStatus[med.id]}</strong>
+                </p>
+              )}
             </li>
           ))}
         </ul>
 
+        {/* ✅ Add a Medication */}
         <button
           className="medication__button"
           onClick={() => setShowPopup(true)}
@@ -159,50 +260,77 @@ const Medication = () => {
           Add a Medication
         </button>
 
+        {/* ✅ Medication Popup */}
         {showPopup && (
           <div className="popup">
-            <div className="popup__content">
-              <h2>Enter Medication Details</h2>
-              <input
-                type="text"
-                name="name"
-                placeholder="Medication Name"
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="dosage"
-                placeholder="Dosage"
-                onChange={handleChange}
-              />
-              <select
-                name="dosage_unit"
-                onChange={handleChange}
-                value={newMedication.dosage_unit}
-              >
-                <option value="mg">mg</option>
-                <option value="mcg">mcg</option>
-                <option value="g">g</option>
-                <option value="ml">ml</option>
-                <option value="%">%</option>
-              </select>
-              <input type="date" name="start_date" onChange={handleChange} />
-              <input type="time" name="schedule_time" onChange={handleChange} />
-              <input
-                type="date"
-                name="end_date"
-                placeholder="End date (optional)"
-                onChange={handleChange}
-              />
-              <button
-                className="popup__button"
-                onClick={() => setShowPopup(false)}
-              >
-                Cancel
-              </button>
-              <button className="popup__button" onClick={saveMedication}>
-                Save
-              </button>
+            <div className="popup__container">
+              <h2 className="popup__title">Enter Medication Details</h2>
+
+              <div className="popup__form">
+                <input
+                  className="popup__input"
+                  type="text"
+                  name="name"
+                  placeholder="Medication Name"
+                  onChange={handleChange}
+                />
+
+                <input
+                  className="popup__input"
+                  type="text"
+                  name="dosage"
+                  placeholder="Dosage"
+                  onChange={handleChange}
+                />
+
+                <select
+                  className="popup__select"
+                  name="dosage_unit"
+                  onChange={handleChange}
+                  value={newMedication.dosage_unit}
+                >
+                  <option value="mg">mg</option>
+                  <option value="mcg">mcg</option>
+                  <option value="g">g</option>
+                  <option value="ml">ml</option>
+                  <option value="%">%</option>
+                </select>
+
+                <input
+                  className="popup__input"
+                  type="date"
+                  name="start_date"
+                  onChange={handleChange}
+                />
+                <input
+                  className="popup__input"
+                  type="time"
+                  name="schedule_time"
+                  onChange={handleChange}
+                />
+                <input
+                  className="popup__input"
+                  type="date"
+                  name="end_date"
+                  placeholder="End date (optional)"
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="popup__actions">
+                <button
+                  className="popup__button popup__button--cancel"
+                  onClick={() => setShowPopup(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="popup__button popup__button--save"
+                  onClick={saveMedication}
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </div>
         )}

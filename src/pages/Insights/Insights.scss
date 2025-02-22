@@ -1,0 +1,76 @@
+@use "../../styles/partials/variables" as *;
+
+.insights {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  &__loading {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+  }
+
+  &__table {
+    margin-top: 20px;
+
+    &-title {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    &-content {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    &-row {
+      &--header {
+        background-color: #f5f5f5;
+        font-weight: bold;
+      }
+
+      &--taken {
+        background-color: $secondary-color-4;
+        color: black;
+      }
+
+      &--missed {
+        background-color: $secondary-color-5;
+        color: black;
+      }
+
+      &--skipped {
+        background-color: $secondary-color-3;
+        color: black;
+      }
+    }
+
+    &-header,
+    &-data {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    &-data {
+      font-size: 16px;
+    }
+  }
+}

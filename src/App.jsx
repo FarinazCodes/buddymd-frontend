@@ -14,6 +14,7 @@ import Welcome from "./pages/Welcome/Welcome";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Profile from "./components/Profile/Profile";
+import Insights from "./pages/Insights/Insights";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -40,6 +41,10 @@ function App() {
         <Route
           path="/medications"
           element={user ? <Medication /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/insights"
+          element={user ? <Insights /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>
