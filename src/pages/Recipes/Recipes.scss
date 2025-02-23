@@ -3,16 +3,16 @@
 @use "../../styles/partials/globals" as *;
 
 .recipes {
-  font-family: "new-zen", sans-serif;
-  font-weight: 700;
-  font-style: normal;
   &__title {
-    font-size: 2rem;
+    background-color: #fca5a5;
+    padding: 0.5px 12px;
+    border-radius: 0px 12px 12px 0px;
+    font-size: 1rem;
     font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    display: inline-block;
+    color: black;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   &__intolerances {

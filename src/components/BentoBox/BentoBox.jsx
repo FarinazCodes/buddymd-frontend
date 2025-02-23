@@ -24,9 +24,10 @@ const BentoBox = () => {
       onClick: () => navigate("/insights"),
     },
     {
-      className: "bento-box--health-tips",
-      title: "Daily Health Tips",
-      titleClass: "title-health-tips",
+      className: "bento-box--drug-reactions",
+      title: "Drug Reactions",
+      titleClass: "title-drug-reactions",
+      onClick: () => navigate("/drug-reactions"),
     },
   ];
 

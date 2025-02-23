@@ -16,6 +16,7 @@ import Login from "./pages/Login/Login";
 import Profile from "./components/Profile/Profile";
 import Insights from "./pages/Insights/Insights";
 import Recipes from "./pages/Recipes/Recipes";
+import DrugReactions from "./pages/DrugReactions/DrugReactions";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -51,6 +52,11 @@ function App() {
         <Route
           path="/recipes"
           element={user ? <Recipes /> : <Navigate to="/login" />}
+        />
+
+        <Route
+          path="/drug-reactions"
+          element={user ? <DrugReactions /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>
