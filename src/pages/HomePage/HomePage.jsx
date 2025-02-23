@@ -2,6 +2,7 @@ import React from "react";
 import BentoBox from "../../components/BentoBox/BentoBox";
 import CustomCalendar from "../../components/CustomCalendar/CustomCalendar";
 import "./HomePage.scss";
+import Footer from "../../components/Footer/Footer";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
 
       {/* Bento Grid */}
       <BentoBox />
+      <Footer />
     </div>
   );
 };
