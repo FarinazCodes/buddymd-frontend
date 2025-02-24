@@ -17,7 +17,7 @@ const Register = () => {
     setError("");
 
     try {
-      // ✅ Create user in Firebase Auth
+      // ✅ Register the user in Firebase
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -34,7 +34,7 @@ const Register = () => {
 
       // ✅ Send user data to backend
       await axios.post(
-        `${apiUrl}/api/users`, // Ensure your backend has this endpoint
+        `${apiUrl}/api/auth/register`, // Ensure your backend has this endpoint
         {
           uid: user.uid,
           email: user.email,
