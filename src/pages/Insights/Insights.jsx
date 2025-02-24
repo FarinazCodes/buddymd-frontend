@@ -32,14 +32,11 @@ const Insights = () => {
   const fetchMedicationsAndAdherence = async (user) => {
     try {
       const token = await user.getIdToken();
+      const apiUrl = import.meta.env.VITE_API_URL;
 
-      // Fetch Medications
-      const medResponse = await axios.get(
-        "http://localhost:5001/api/medications",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const medResponse = await axios.get(`${apiUrl}/api/medications`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       const meds = medResponse.data;
       setMedications(meds);
@@ -49,7 +46,7 @@ const Insights = () => {
         meds.map(async (med) => {
           try {
             const adherenceResponse = await axios.get(
-              `http://localhost:5001/api/adherence/${med.id}`,
+              `${apiUrl}/api/adherence/${med.id}`,
               { headers: { Authorization: `Bearer ${token}` } }
             );
 

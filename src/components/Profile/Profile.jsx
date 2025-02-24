@@ -8,12 +8,30 @@ const Profile = () => {
   const auth = getAuth();
   const [user, setUser] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
-        setPhoneNumber(user.phoneNumber || "");
+
+        try {
+          const token = await user.getIdToken();
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_URL}/api/profile/get-phone`,
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+
+          if (response.data.phone_number) {
+            setPhoneNumber(response.data.phone_number);
+          }
+        } catch (error) {
+          console.error("Error fetching phone number:", error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setLoading(false);
       }
     });
 
@@ -26,13 +44,11 @@ const Profile = () => {
     try {
       const token = await user.getIdToken();
       await axios.post(
-        "http://localhost:5001/api/profile/update-phone",
+        `${import.meta.env.VITE_API_URL}/api/profile/update-phone`,
         { phone_number: phoneNumber },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Update phone number in Firebase Auth
-      await updateProfile(user, { phoneNumber });
       alert("Phone number updated successfully!");
     } catch (error) {
       console.error(
@@ -46,7 +62,9 @@ const Profile = () => {
     <div className="profile">
       <h2 className="profile__title">User Profile</h2>
 
-      {user ? (
+      {loading ? (
+        <p className="profile__loading">Loading...</p>
+      ) : user ? (
         <div className="profile__info">
           <p className="profile__email">
             <strong>Email:</strong> {user.email}
@@ -66,7 +84,6 @@ const Profile = () => {
               />
             </label>
           </div>
-          {/* ✅ Button Container for Alignment */}
           <div className="profile__buttons">
             <button
               className="profile__button profile__button--update"
@@ -75,14 +92,13 @@ const Profile = () => {
               Update Phone Number
             </button>
 
-            {/* ✅ Home Button BELOW "Update Phone Number" */}
             <Link to="/home" className="profile__button profile__button--home">
               Home
             </Link>
           </div>
         </div>
       ) : (
-        <p className="profile__loading">Loading...</p>
+        <p className="profile__loading">User not found.</p>
       )}
     </div>
   );

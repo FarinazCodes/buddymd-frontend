@@ -20,6 +20,8 @@ const Medication = () => {
     end_date: "",
   });
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const auth = getAuth();
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -28,15 +30,11 @@ const Medication = () => {
       if (user) {
         setCurrentUser(user);
 
-        // Fetch phone number from backend
         const token = await user.getIdToken();
         try {
-          const response = await axios.get(
-            "http://localhost:5001/api/profile/get-phone",
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          );
+          const response = await axios.get(`${apiUrl}/api/profile/get-phone`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
 
           if (response.data.phone_number) {
             setPhoneNumber(response.data.phone_number);
@@ -50,36 +48,30 @@ const Medication = () => {
     return () => unsubscribe();
   }, [auth]);
 
-  // ✅ Fetch medications and adherence logs
   const fetchMedications = async () => {
     if (!currentUser) return;
 
     try {
       const token = await currentUser.getIdToken();
 
-      // Fetch Medications
-      const response = await axios.get(
-        "http://localhost:5001/api/medications",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await axios.get(`${apiUrl}/api/medications`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       const meds = response.data;
       setMedications(meds);
 
-      // Fetch adherence logs for each medication
       const adherenceMap = {};
       await Promise.all(
         meds.map(async (med) => {
           try {
             const adherenceResponse = await axios.get(
-              `http://localhost:5001/api/adherence/${med.id}`, // ✅ Pass `med.id`
+              `${apiUrl}/api/adherence/${med.id}`,
               { headers: { Authorization: `Bearer ${token}` } }
             );
 
             if (adherenceResponse.data.length > 0) {
-              adherenceMap[med.id] = adherenceResponse.data[0].status; // ✅ Store latest status
+              adherenceMap[med.id] = adherenceResponse.data[0].status;
             }
           } catch (error) {
             console.error(
@@ -90,7 +82,6 @@ const Medication = () => {
         })
       );
 
-      // ✅ Update adherence state
       setAdherenceStatus(adherenceMap);
     } catch (error) {
       console.error("Error fetching medications:", error);
@@ -103,12 +94,10 @@ const Medication = () => {
     }
   }, [currentUser]);
 
-  // Handle input change
   const handleChange = (e) => {
     setNewMedication({ ...newMedication, [e.target.name]: e.target.value });
   };
 
-  // ✅ Add Adherence Status
   const addAdherenceLog = async (medicationId, status) => {
     if (!currentUser) {
       console.error("User not authenticated");
@@ -118,11 +107,11 @@ const Medication = () => {
     try {
       const token = await currentUser.getIdToken();
       await axios.post(
-        "http://localhost:5001/api/adherence",
+        `${apiUrl}/api/adherence`,
         {
           medication_id: medicationId,
-          date: new Date().toISOString().split("T")[0], // ✅ Log for today's date
-          status: status, // "Taken", "Missed", or "Skipped"
+          date: new Date().toISOString().split("T")[0],
+          status: status,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -131,7 +120,6 @@ const Medication = () => {
         `Adherence logged: ${status} for medication ID ${medicationId}`
       );
 
-      // ✅ Update local state immediately to persist status
       setAdherenceStatus((prevStatus) => ({
         ...prevStatus,
         [medicationId]: status,
@@ -141,7 +129,6 @@ const Medication = () => {
     }
   };
 
-  // ✅ Save a Medication
   const saveMedication = async () => {
     if (!currentUser) {
       console.error("User not authenticated");
@@ -156,7 +143,7 @@ const Medication = () => {
     try {
       const token = await currentUser.getIdToken();
       await axios.post(
-        "http://localhost:5001/api/medications",
+        `${apiUrl}/api/medications`,
         {
           ...newMedication,
           end_date:
@@ -174,7 +161,6 @@ const Medication = () => {
     }
   };
 
-  // ✅ Delete a Medication
   const deleteMedication = async (id) => {
     if (!currentUser) {
       console.error("User not authenticated");
@@ -183,11 +169,11 @@ const Medication = () => {
 
     try {
       const token = await currentUser.getIdToken();
-      await axios.delete(`http://localhost:5001/api/medications/${id}`, {
+      await axios.delete(`${apiUrl}/api/medications/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      fetchMedications(); // Refresh the list after deletion
+      fetchMedications();
       console.log("Medication deleted successfully");
     } catch (error) {
       console.error(
@@ -199,7 +185,7 @@ const Medication = () => {
 
   return (
     <div className="medication">
-      <CustomCalendar />
+      <CustomCalendar className="medication__calendar" />
       <div className="medication__title">
         <h2>Medications</h2>
       </div>
@@ -214,53 +200,93 @@ const Medication = () => {
           </div>
         </div>
 
-        <ul className="medication__list">
+        <div className="medication__list">
           {medications.map((med) => (
-            <li key={med.id}>
-              {med.name} - {med.dosage} {med.dosage_unit} - Starts:{" "}
-              {med.start_date} at {med.schedule_time}{" "}
-              {med.end_date ? `until ${med.end_date}` : ""}
-              <button onClick={() => deleteMedication(med.id)}>Delete</button>
-              {/* ✅ Show adherence status */}
-              {!adherenceStatus[med.id] ? (
-                <div className="medication__actions">
+            <div key={med.id} className="medication__card">
+              <div className="medication__info">
+                <div className="medication__date">
+                  <span className="medication__label">Start Date:</span>
+                  <span className="medication__value">
+                    {new Date(med.start_date).toLocaleDateString()}
+                  </span>
+                </div>
+
+                {med.end_date && (
+                  <div className="medication__date">
+                    <span className="medication__label">End Date:</span>
+                    <span className="medication__value">
+                      {new Date(med.end_date).toLocaleDateString()}
+                    </span>
+                  </div>
+                )}
+
+                <div className="medication__details">
+                  <h3>{med.name}</h3>
+                  <p>
+                    {med.dosage} {med.dosage_unit}
+                  </p>
+                  <p>
+                    <strong>Time:</strong>{" "}
+                    {new Date(
+                      `1970-01-01T${med.schedule_time}`
+                    ).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </p>
                   <button
-                    className="medication__button medication__button--taken"
-                    onClick={() => addAdherenceLog(med.id, "Taken")}
+                    className="medication__delete"
+                    onClick={() => deleteMedication(med.id)}
                   >
-                    Taken
-                  </button>
-                  <button
-                    className="medication__button medication__button--missed"
-                    onClick={() => addAdherenceLog(med.id, "Missed")}
-                  >
-                    Missed
-                  </button>
-                  <button
-                    className="medication__button medication__button--skipped"
-                    onClick={() => addAdherenceLog(med.id, "Skipped")}
-                  >
-                    Skipped
+                    Delete
                   </button>
                 </div>
-              ) : (
-                <p className="medication__status">
-                  Status: <strong>{adherenceStatus[med.id]}</strong>
-                </p>
-              )}
-            </li>
-          ))}
-        </ul>
+              </div>
 
-        {/* ✅ Add a Medication */}
+              <div className="medication__actions-column">
+                {adherenceStatus[med.id] ? (
+                  <p
+                    className={`medication__status medication__status--${adherenceStatus[
+                      med.id
+                    ].toLowerCase()}`}
+                  >
+                    {adherenceStatus[med.id]}
+                  </p>
+                ) : (
+                  <>
+                    <button
+                      className="medication__button medication__button--taken"
+                      onClick={() => addAdherenceLog(med.id, "Taken")}
+                    >
+                      Taken
+                    </button>
+                    <button
+                      className="medication__button medication__button--missed"
+                      onClick={() => addAdherenceLog(med.id, "Missed")}
+                    >
+                      Missed
+                    </button>
+                    <button
+                      className="medication__button medication__button--skipped"
+                      onClick={() => addAdherenceLog(med.id, "Skipped")}
+                    >
+                      Skipped
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
         <button
-          className="medication__button"
+          className="medication__button medication__button--add"
           onClick={() => setShowPopup(true)}
         >
           Add a Medication
         </button>
 
-        {/* ✅ Medication Popup */}
         {showPopup && (
           <div className="popup">
             <div className="popup__container">

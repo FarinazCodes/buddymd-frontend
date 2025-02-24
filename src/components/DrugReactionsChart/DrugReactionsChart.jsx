@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 
 import "./DrugReactionsChart.scss";
-// ✅ Register Chart.js components
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -31,10 +31,11 @@ const DrugReactionsChart = ({ drugName }) => {
 
     axios
       .get(
-        `http://localhost:5001/api/drug-reactions/reactions?drug=${encodeURIComponent(
-          drugName
-        )}`
+        `${
+          import.meta.env.VITE_API_URL
+        }/api/drug-reactions/reactions?drug=${encodeURIComponent(drugName)}`
       )
+
       .then((response) => {
         if (response.data.success) {
           const labels = response.data.reactions.map((item) => item.term);

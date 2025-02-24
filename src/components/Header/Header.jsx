@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/BuddyMD Logo.png";
-import profileIcon from "../../assets/images/profile.png";
+import profileIcon from "../../assets/images/profile.gif";
 import "./Header.scss";
 
 const Header = () => {
@@ -13,7 +13,6 @@ const Header = () => {
         <img className="header__logo" src={logo} alt="BuddyMD Logo" />
       </div>
 
-      {/* ✅ Show Profile Image ONLY on Home Page */}
       {location.pathname === "/home" && (
         <Link to="/profile" className="header__profile-link">
           <img

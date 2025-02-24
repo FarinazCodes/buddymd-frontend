@@ -23,21 +23,20 @@ const Login = () => {
       );
       const user = userCredential.user;
 
-      // ✅ Get Firebase ID Token
       const token = await user.getIdToken();
 
-      // ✅ Send Token to Backend for Verification (Optional)
+      const apiUrl = import.meta.env.VITE_API_URL;
       await axios.post(
-        "http://localhost:5001/api/auth/verify",
+        `${apiUrl}/api/auth/verify`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
 
-      sessionStorage.setItem("token", token); // ✅ Store token for future API calls
+      sessionStorage.setItem("token", token);
 
-      navigate("/home"); // ✅ Navigate after successful login
+      navigate("/home");
     } catch (error) {
       console.error("Login Error:", error);
       setError(error.message);

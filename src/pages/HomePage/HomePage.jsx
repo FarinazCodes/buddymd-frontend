@@ -7,10 +7,8 @@ import Footer from "../../components/Footer/Footer";
 const HomePage = () => {
   return (
     <div className="homepage">
-      {/* Calendar */}
       <CustomCalendar />
 
-      {/* Bento Grid */}
       <BentoBox />
       <Footer />
     </div>

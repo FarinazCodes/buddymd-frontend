@@ -6,7 +6,6 @@ const DrugReactions = () => {
   const [inputValue, setInputValue] = useState("");
   const [drugName, setDrugName] = useState("");
 
-  // ✅ Update input value when typing
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -16,7 +15,7 @@ const DrugReactions = () => {
       alert("Please enter a drug name.");
       return;
     }
-    setDrugName(inputValue); // Set drugName only when searching
+    setDrugName(inputValue);
   };
 
   return (
