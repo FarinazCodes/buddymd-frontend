@@ -8,7 +8,7 @@ import "./Register.scss";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -17,7 +17,6 @@ const Register = () => {
     setError("");
 
     try {
-      // ✅ Register the user in Firebase
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -25,28 +24,21 @@ const Register = () => {
       );
       const user = userCredential.user;
 
-      // ✅ Set display name in Firebase Auth
-      await updateProfile(user, { displayName });
-
-      // ✅ Get Firebase token for authentication
       const token = await user.getIdToken();
-      const apiUrl = import.meta.env.VITE_API_URL; // ✅ Use environment variable for API URL
+      const apiUrl = import.meta.env.VITE_API_URL;
 
-      // ✅ Send user data to backend
       await axios.post(
-        `${apiUrl}/api/auth/register`, // Ensure your backend has this endpoint
+        `${apiUrl}/api/auth/register`,
         {
           uid: user.uid,
           email: user.email,
-          displayName: displayName,
-          phoneNumber: "", // Optional, can be updated later
+          phoneNumber: "",
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       console.log("User successfully added to database!");
 
-      // ✅ Navigate to home after successful registration
       navigate("/home");
     } catch (error) {
       console.error("Registration Error:", error);
@@ -60,16 +52,6 @@ const Register = () => {
         <h2 className="register__title">Register</h2>
         {error && <p className="register__error">{error}</p>}
         <form className="register__form" onSubmit={handleRegister}>
-          <label className="register__label">Full Name</label>
-          <input
-            type="text"
-            placeholder="Enter your full name"
-            className="register__input"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-            required
-          />
-
           <label className="register__label">Email</label>
           <input
             type="email"
