@@ -9,24 +9,39 @@
   padding-left: 3rem;
   border-radius: 8px;
   text-align: center;
+  @include tablet {
+    padding-left: 17.5rem;
+  }
+  @include desktop {
+    padding-left: 30rem;
+  }
 }
 
 .profile__title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  @include desktop {
+    font-size: 1.8rem;
+  }
 }
 
 .profile__info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  @include desktop {
+    font-size: 1.8rem;
+  }
 }
 
 .profile__email,
 .profile__password {
   font-size: 16px;
   margin: 10px 0;
+  @include desktop {
+    font-size: 1.5rem;
+  }
 }
 
 .profile__phone {
@@ -48,6 +63,12 @@
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  @include desktop {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    padding: 10px 7px;
+  }
 }
 
 .profile__button {
@@ -58,6 +79,11 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  @include desktop {
+    font-size: 1.5rem;
+    padding: 20px 20px;
+    border-radius: 15px;
+  }
 }
 
 .profile__button--update {
@@ -73,4 +99,10 @@
   padding: 8px 10px;
   text-decoration: none;
   display: inline-block;
+  @include desktop {
+    margin-top: 2rem;
+    margin-bottom: 7rem;
+    padding: 10px 20px;
+    border-radius: 15px;
+  }
 }

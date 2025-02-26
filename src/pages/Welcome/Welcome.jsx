@@ -1,5 +1,6 @@
 import React from "react";
 import "./Welcome.scss";
+import Cat from "../../assets/images/cat.gif";
 
 import { Link } from "react-router-dom";
 
@@ -7,6 +8,11 @@ const Welcome = () => {
   return (
     <div className="welcome">
       <div className="welcome__container">
+        <img
+          src={Cat}
+          alt="Medication Tracker Animation"
+          className="welcome__gif"
+        />
         <h1 className="welcome__title">Your Personal Medication Tracker</h1>
         <div className="welcome__content">
           <Link to="/register" className="welcome__button">

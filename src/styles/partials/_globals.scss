@@ -1,8 +1,15 @@
 @use "./fonts" as *;
 @use "./variables" as *;
+@use "./mixins" as *;
 
 body {
   background-color: $primary-color-2;
   font-family: "Newsreader", sans-serif;
   overflow-x: hidden;
+
+  @include desktop {
+    // overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
 }

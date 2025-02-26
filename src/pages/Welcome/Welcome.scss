@@ -9,6 +9,9 @@
   align-items: center;
   height: 80vh;
   text-align: center;
+  font-family: "new-zen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 
   &__container {
     padding: 2rem;
@@ -17,14 +20,41 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    @include tablet {
+      padding-left: 17.5rem;
+    }
+
+    @include desktop {
+      padding-left: 32rem;
+    }
   }
 
+  &__gif {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1rem;
+    padding-right: 1.2rem;
+    @include desktop {
+      width: 190px;
+      height: 190px;
+    }
+  }
   &__title {
     font-size: 1.8rem;
     color: #333;
     margin-bottom: 4rem;
     text-align: left;
     width: 100%;
+    padding-left: 1rem;
+    @include tablet {
+      padding-left: 2rem;
+      max-width: 200px;
+      padding-right: 1.5rem;
+    }
+    @include desktop {
+      font-size: 2.5rem;
+      max-width: 300px;
+    }
   }
 
   &__content {
@@ -32,6 +62,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    font-weight: 300;
   }
 
   &__button {
@@ -42,6 +73,9 @@
     border-radius: 20px;
     text-decoration: none;
     font-size: 1.2rem;
+    @include desktop {
+      font-size: 1.5rem;
+    }
   }
 
   &__login-text {
@@ -49,6 +83,9 @@
     font-size: 0.9rem;
     color: #555;
     text-align: center;
+    @include desktop {
+      font-size: 1.4rem;
+    }
   }
 
   &__login-link {
