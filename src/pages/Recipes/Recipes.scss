@@ -3,6 +3,9 @@
 @use "../../styles/partials/globals" as *;
 
 .recipes {
+  @include tablet {
+    padding-bottom: 26rem;
+  }
   &__title {
     background-color: $primary-color-6;
     padding: 0.5px 12px;
@@ -13,6 +16,17 @@
     color: black;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    @include tablet {
+      padding-left: 1.5rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+    @include desktop {
+      padding-left: 3rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
   }
 
   &__intolerances {
@@ -22,10 +36,25 @@
     margin-bottom: 20px;
     margin-left: 2rem;
     margin-right: 2rem;
+    @include tablet {
+      padding-left: 1.5rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+    @include desktop {
+      padding-left: 1rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      font-size: 1.5rem;
+      padding-right: 10rem;
+    }
   }
 
   &__intolerance {
     font-size: 1rem;
+    @include desktop {
+      font-size: 1.5rem;
+    }
   }
 
   &__checkbox {
@@ -41,6 +70,21 @@
     margin-left: 2rem;
     margin-top: 10px;
     transition: 0.3s;
+    @include tablet {
+      padding-right: 1.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 1.5rem;
+      margin-left: 4rem;
+    }
+    @include desktop {
+      padding-right: 1.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 1.5rem;
+      margin-left: 4rem;
+      font-size: 1.5rem;
+    }
   }
 
   &__list {

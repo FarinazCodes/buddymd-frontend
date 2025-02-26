@@ -1,15 +1,28 @@
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/globals" as *;
 
 .insights {
   padding: 20px;
   font-family: Arial, sans-serif;
+  @include tablet {
+    padding-left: 10rem;
+    padding-bottom: 2rem;
+  }
+  @include desktop {
+    padding-left: 25rem;
+
+    padding-bottom: 15rem;
+  }
 
   &__title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
+    @include desktop {
+      font-size: 2rem;
+    }
   }
 
   &__chart {
@@ -33,12 +46,18 @@
       font-weight: bold;
       text-align: center;
       margin-bottom: 10px;
+      @include desktop {
+        font-size: 1.5rem;
+      }
     }
 
     &-content {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
+      @include desktop {
+        font-size: 1.5rem;
+      }
     }
 
     &-row {
@@ -72,6 +91,9 @@
 
     &-data {
       font-size: 16px;
+      @include desktop {
+        font-size: 1.5rem;
+      }
     }
   }
 }

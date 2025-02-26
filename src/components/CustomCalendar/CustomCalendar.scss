@@ -51,10 +51,10 @@
     color: $primary-color-4;
     font-weight: bold;
     @include tablet {
-      width: 83.2vh;
+      width: 82.5vh;
     }
     @include desktop {
-      width: 81.5vh;
+      width: 81.6vh;
       font-size: 1.2rem;
       padding-left: 3rem;
     }
@@ -70,12 +70,12 @@
     justify-content: space-between;
     width: 37vh;
     @include tablet {
-      width: 76vh;
-      padding-left: 1.5rem;
+      width: 73.95vh;
+      padding-left: 2.2rem;
     }
     @include desktop {
-      width: 73.5vh;
-      padding-left: 5rem;
+      width: 73vh;
+      padding-left: 6rem;
     }
   }
 

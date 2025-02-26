@@ -63,8 +63,8 @@
     @include desktop {
       height: 400px;
       width: 120px;
-      margin-left: -6rem;
-      margin-top: -1rem;
+      margin-left: 0rem;
+      margin-top: 10rem;
     }
     @include tablet {
     }
@@ -75,11 +75,11 @@
     width: 90px;
     margin-right: 3rem;
     @include desktop {
-      height: 300px;
+      height: 315px;
       width: 120px;
-      margin-left: -19rem;
-      margin-bottom: -13rem;
-      margin-top: 2rem;
+      margin-left: -21.5rem;
+      margin-bottom: -3rem;
+      margin-top: 10rem;
     }
     @include tablet {
       margin-left: 0.5rem;
@@ -90,10 +90,10 @@
     width: 90px;
     grid-row: span 2;
     @include desktop {
-      height: 350px;
+      height: 380px;
       width: 120px;
-      margin-top: 13rem;
-      margin-left: -19rem;
+      margin-top: 3rem;
+      margin-left: -21.5rem;
     }
     @include tablet {
       margin-left: 0.5rem;
@@ -106,8 +106,8 @@
     @include desktop {
       height: 300px;
       width: 120px;
-      margin-left: -6rem;
-      margin-bottom: 13rem;
+
+      margin-bottom: 10rem;
     }
   }
 }
