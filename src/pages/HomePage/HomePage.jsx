@@ -10,6 +10,7 @@ const HomePage = () => {
       <CustomCalendar />
 
       <BentoBox />
+
       <Footer />
     </div>
   );

@@ -3,25 +3,26 @@
 @use "../../styles/partials/globals" as *;
 
 .login {
+  background-color: $primary-color-2;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  background-color: $primary-color-2;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
   font-family: "new-zen", sans-serif;
   font-weight: 700;
   font-style: normal;
+  overflow: hidden;
 
   &__container {
     width: 240px;
     padding: 2rem;
     text-align: center;
     @include tablet {
-      padding-left: 17.5rem;
     }
 
     @include desktop {
-      padding-left: 32rem;
       font-size: 1.8rem;
     }
   }
@@ -55,7 +56,7 @@
     margin-top: 10px;
     color: #444;
     @include desktop {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
   }
 
@@ -70,7 +71,7 @@
     margin-top: 5px;
     transition: all 0.3s;
     @include desktop {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       width: 20rem;
     }
   }
@@ -94,7 +95,7 @@
     font-size: 16px;
     margin-top: 15px;
     @include desktop {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-right: 1rem;
     }
 

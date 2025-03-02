@@ -13,7 +13,8 @@
   text-align: center;
   overflow-x: auto;
   @include tablet {
-    margin-left: 1.7rem;
+    margin-left: 3.5rem;
+    // padding-left: 2rem;
   }
   @include desktop {
     margin-left: 3.5rem;
