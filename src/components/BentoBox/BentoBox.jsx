@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./BentoBox.scss";
-import Cat from "../../assets/images/Cat.gif";
 
 const BentoBox = () => {
   const navigate = useNavigate();
@@ -45,7 +44,6 @@ const BentoBox = () => {
           </div>
         </div>
       ))}
-      {/* <img src={Cat} alt="Medication Tracker Animation" className="cat__gif" /> */}
     </section>
   );
 };

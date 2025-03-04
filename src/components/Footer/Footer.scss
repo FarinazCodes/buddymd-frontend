@@ -2,14 +2,20 @@
 @use "../../styles/partials/mixins" as *;
 
 .footer {
-  margin-left: 1.5rem;
+  position: fixed; // Keeps footer at the bottom
+  bottom: 0; // Ensures it always stays at the bottom
+  left: 50%;
+  transform: translateX(-50%); // Centers it horizontally
+  text-align: center;
+  width: max-content; // Prevents stretching
+  font-size: 0.875rem;
+  background: transparent;
+
   @include tablet {
-    margin-left: 16rem;
+    bottom: 0.5rem; // Adjust for tablets
   }
 
   @include desktop {
-    position: absolute;
-    left: 30rem;
-    bottom: 0.5rem;
+    bottom: 1rem; // Slightly lower on desktop for better spacing
   }
 }
