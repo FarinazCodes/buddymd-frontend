@@ -9,11 +9,11 @@
   margin-top: 1rem;
   padding: 1rem;
   height: 100vh;
-  width: clamp(85vw, 90vw, 100vw); // Gradually shrinks width
-  max-width: 600px; // Ensures uniform shrinking
-  margin: 0 auto; // Centers the grid
-  place-items: center; // Keeps items aligned
-  transition: width 0.5s ease-in-out; // Smooth shrinking animation
+  width: clamp(70vw, 90vw, 90vw);
+  max-width: 600px;
+  margin: 0 auto;
+  place-items: center;
+  transition: width 0.5s ease-in-out;
 
   @include tablet {
     padding-left: 13rem;
