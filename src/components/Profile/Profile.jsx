@@ -59,47 +59,52 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile">
-      <h2 className="profile__title">User Profile</h2>
+    <div className="profile-container">
+      <div className="profile">
+        <h2 className="profile__title">User Profile</h2>
 
-      {loading ? (
-        <p className="profile__loading">Loading...</p>
-      ) : user ? (
-        <div className="profile__info">
-          <p className="profile__email">
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p className="profile__password">
-            <strong>Password:</strong> (Hidden for security)
-          </p>
-          <div className="profile__phone">
-            <label className="profile__phone-label">
-              Phone Number:
-              <input
-                className="profile__phone-input"
-                type="text"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder="Enter phone number"
-              />
-            </label>
-          </div>
-          <div className="profile__buttons">
-            <button
-              className="profile__button profile__button--update"
-              onClick={handleUpdatePhoneNumber}
-            >
-              Update Phone Number
-            </button>
+        {loading ? (
+          <p className="profile__loading">Loading...</p>
+        ) : user ? (
+          <div className="profile__info">
+            <p className="profile__email">
+              <strong>Email:</strong> {user.email}
+            </p>
+            <p className="profile__password">
+              <strong>Password:</strong> (Hidden for security)
+            </p>
+            <div className="profile__phone">
+              <label className="profile__phone-label">
+                Phone Number:
+                <input
+                  className="profile__phone-input"
+                  type="text"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="Enter phone number"
+                />
+              </label>
+            </div>
+            <div className="profile__buttons">
+              <button
+                className="profile__button profile__button--update"
+                onClick={handleUpdatePhoneNumber}
+              >
+                Update Phone Number
+              </button>
 
-            <Link to="/home" className="profile__button profile__button--home">
-              Home
-            </Link>
+              <Link
+                to="/home"
+                className="profile__button profile__button--home"
+              >
+                Home
+              </Link>
+            </div>
           </div>
-        </div>
-      ) : (
-        <p className="profile__loading">User not found.</p>
-      )}
+        ) : (
+          <p className="profile__loading">User not found.</p>
+        )}
+      </div>
     </div>
   );
 };
