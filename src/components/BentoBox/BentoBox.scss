@@ -4,17 +4,32 @@
 
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto;
-  gap: 0.5rem;
+  grid-template-columns: repeat(2, minmax(40%, 1fr));
+  gap: clamp(0.5rem, 2vw, 1rem);
   margin-top: 1rem;
   padding: 1rem;
-  align-items: start;
+  height: 100vh;
+  width: clamp(70vw, 90vw, 90vw);
+  max-width: 600px;
+  margin: 0 auto;
+  place-items: center;
+  transition: width 0.5s ease-in-out;
+
+  @include tablet {
+    padding-left: 13rem;
+    width: clamp(85vw, 90vw, 38vw);
+  }
+
+  @include desktop {
+    width: clamp(85vw, 90vw, 23vw);
+    padding-left: 31rem;
+  }
 }
 
 .bento-box {
-  background-color: $tertiary-color-1;
-  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+  background-color: $tertiary-color-2;
+  background-image: url("../../assets/images/Sparkle.gif"),
+    url("https://www.transparenttextures.com/patterns/cartographer.png");
   background-size: auto;
   background-blend-mode: overlay;
   padding: 1.5rem;
@@ -32,28 +47,51 @@
     text-align: end;
     padding-right: 5rem;
     color: $primary-color-2;
+    font-family: "new-zen", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    @include tablet {
+      font-family: "new-zen", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    @include desktop {
+      font-family: "new-zen", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1.4rem;
+    }
   }
 
   &--medications {
     height: 342px;
     width: 90px;
-    grid-row: span 2;
   }
 
   &--recipes {
     height: 215px;
     width: 90px;
-    margin-right: 3rem;
+    margin-bottom: 7.5rem;
   }
+
   &--insights {
     height: 200px;
     width: 90px;
-    grid-row: span 2;
+    margin-top: -1.5rem;
+    @include desktop {
+      margin-top: -1.5rem;
+    }
   }
 
   &--drug-reactions {
     height: 246px;
     width: 90px;
+    margin-top: -14rem;
+
+    @include desktop {
+      margin-top: -14rem;
+    }
   }
 }
 

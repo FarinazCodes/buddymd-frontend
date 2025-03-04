@@ -32,19 +32,21 @@ const BentoBox = () => {
   ];
 
   return (
-    <section className="bento-grid">
-      {bentoItems.map((item, index) => (
-        <div
-          key={index}
-          className={`bento-box ${item.className}`}
-          onClick={item.onClick}
-        >
-          <div className={`bento-box__title ${item.titleClass}`}>
-            {item.title}
+    <div className="bento-grid-container">
+      <section className="bento-grid">
+        {bentoItems.map((item, index) => (
+          <div
+            key={index}
+            className={`bento-box ${item.className}`}
+            onClick={item.onClick}
+          >
+            <div className={`bento-box__title ${item.titleClass}`}>
+              {item.title}
+            </div>
           </div>
-        </div>
-      ))}
-    </section>
+        ))}
+      </section>
+    </div>
   );
 };
 
