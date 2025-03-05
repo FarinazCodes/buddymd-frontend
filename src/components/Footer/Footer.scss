@@ -2,20 +2,21 @@
 @use "../../styles/partials/mixins" as *;
 
 .footer {
-  position: fixed; // Keeps footer at the bottom
-  bottom: 0; // Ensures it always stays at the bottom
+  position: relative;
+  bottom: auto;
   left: 50%;
-  transform: translateX(-50%); // Centers it horizontally
+  transform: translateX(-50%);
   text-align: center;
-  width: max-content; // Prevents stretching
+  width: max-content;
   font-size: 0.875rem;
   background: transparent;
+  margin-top: 2rem;
 
   @include tablet {
-    bottom: 0.5rem; // Adjust for tablets
+    margin-top: 3rem;
   }
 
   @include desktop {
-    bottom: 1rem; // Slightly lower on desktop for better spacing
+    margin-top: 1rem;
   }
 }

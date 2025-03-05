@@ -32,7 +32,7 @@ const BentoBox = () => {
   ];
 
   return (
-    <div className="bento-grid-container">
+    <div className="bento-card">
       <section className="bento-grid">
         {bentoItems.map((item, index) => (
           <div

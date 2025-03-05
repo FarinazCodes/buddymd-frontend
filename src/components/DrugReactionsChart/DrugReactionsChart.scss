@@ -5,19 +5,18 @@
   background: $secondary-color-2;
   border-radius: 12px;
   padding: 10px;
-  margin-left: 10px;
+
   margin-top: 20px;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
   max-width: 100%;
   width: 90%;
   text-align: center;
   overflow-x: auto;
+
   @include tablet {
-    margin-left: 3.5rem;
-    // padding-left: 2rem;
+    margin-bottom: 2rem;
   }
   @include desktop {
-    margin-left: 3.5rem;
     margin-bottom: 6rem;
   }
 

@@ -3,29 +3,41 @@
 @use "../../styles/partials/globals" as *;
 
 .recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center everything inside
+  text-align: center;
+  padding-top: 6rem;
+  font-family: "new-zen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  overflow: hidden;
+
   @include tablet {
-    padding-bottom: 26rem;
+    padding-bottom: 2rem;
   }
   &__title {
     background-color: $primary-color-6;
-    padding: 0.5px 12px;
-    border-radius: 0px 12px 12px 0px;
+    padding: 0.5px 10px;
+    border-radius: 12px 12px 12px 12px;
+    margin-left: 1rem;
     font-size: 1rem;
     font-weight: bold;
     display: inline-block;
     color: black;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    margin-right: 1.2rem;
     @include tablet {
-      padding-left: 1.5rem;
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
+      border-radius: 12px 12px 12px 12px;
     }
     @include desktop {
-      padding-left: 3rem;
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
       font-size: 1.5rem;
+      border-radius: 12px 12px 12px 12px;
     }
   }
 
@@ -34,7 +46,7 @@
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
-    margin-left: 2rem;
+    margin-left: 1.5rem;
     margin-right: 2rem;
     @include tablet {
       padding-left: 1.5rem;
@@ -42,7 +54,7 @@
       padding-bottom: 1.5rem;
     }
     @include desktop {
-      padding-left: 1rem;
+      padding-left: 10rem;
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
       font-size: 1.5rem;
@@ -67,7 +79,7 @@
     padding: 10px 20px;
     font-size: 1rem;
     border: none;
-    margin-left: 2rem;
+
     margin-top: 10px;
     transition: 0.3s;
     @include tablet {
@@ -75,14 +87,13 @@
       padding-top: 1rem;
       padding-bottom: 1rem;
       padding-left: 1.5rem;
-      margin-left: 4rem;
     }
     @include desktop {
       padding-right: 1.5rem;
       padding-top: 1rem;
       padding-bottom: 1rem;
       padding-left: 1.5rem;
-      margin-left: 4rem;
+
       font-size: 1.5rem;
     }
   }
@@ -96,7 +107,6 @@
   &__list-title {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    margin-left: 6rem;
   }
 
   &__card {
