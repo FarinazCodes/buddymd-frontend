@@ -5,36 +5,42 @@
 .drug-reactions {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  max-height: 100vh;
-
+  align-items: center;
+  text-align: center;
+  padding-top: 6rem;
+  font-family: "new-zen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  overflow: hidden;
+  @include desktop {
+    margin-top: 4rem;
+  }
   &__header {
     display: flex;
     background-color: $primary-color-6;
-    border-radius: 0px 12px 12px 0px;
+    border-radius: 12px 12px 12px 12px;
     font-size: 12px;
     font-weight: bold;
     flex-direction: column;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
     padding-right: 0.5rem;
+    padding-left: 0.5rem;
     margin-bottom: 1.5rem;
     @include tablet {
-      padding-left: 0.5rem;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
       padding-right: 1rem;
+      padding-left: 1rem;
     }
     @include desktop {
       padding-left: 2rem;
-      padding-right: 1rem;
+      padding-right: 2rem;
       font-size: 1.3rem;
     }
   }
 
   &__title {
-    margin-left: 20px;
   }
 
   &__search {
@@ -45,17 +51,8 @@
     width: 100%;
     margin-bottom: 1.5rem;
     max-width: 250px;
-    margin-left: 2rem;
-    @include tablet {
-      padding-left: 15rem;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-      padding-top: 2rem;
-    }
-    @include desktop {
-      padding-left: 30rem;
-      padding-top: 2rem;
-    }
+    align-items: center;
+    text-align: center;
   }
 
   &__input {
@@ -81,8 +78,6 @@
     font-size: 1rem;
     border-radius: 8px;
     @include desktop {
-      margin-left: -5rem;
-      margin-right: -5rem;
       font-size: 1.5rem;
     }
   }
