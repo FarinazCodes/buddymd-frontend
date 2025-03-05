@@ -3,16 +3,19 @@
 @use "../../styles/partials/globals" as *;
 
 .insights {
-  padding: 20px;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+
+  width: 100%;
   @include tablet {
-    padding-left: 10rem;
-    padding-bottom: 2rem;
   }
   @include desktop {
-    padding-left: 25rem;
-
-    padding-bottom: 15rem;
   }
 
   &__title {
