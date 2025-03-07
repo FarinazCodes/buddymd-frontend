@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/BuddyMD Logo.png";
-import profileIcon from "../../assets/images/profile.gif";
+import profileIcon from "../../assets/images/Profile.gif";
 import "./Header.scss";
 
 const Header = () => {
