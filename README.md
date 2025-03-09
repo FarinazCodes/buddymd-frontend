@@ -79,7 +79,7 @@ VITE_FIREBASE_APP_ID=your-firebase-app-id
 ---
 
 ## 👨‍💻 Author
-- **Your Name** - [GitHub Profile](https://github.com/FarinazCodes)
+- **Farinaz** - [GitHub Profile](https://github.com/FarinazCodes)
 
 This project was developed as part of the **Capstone Project for BrainStation**. Feel free to report issues, or suggest improvements!
 
