@@ -61,12 +61,6 @@ npm run preview
 ```
 ---
 
-## 🔗 Backend Repository
-This project works alongside a backend service. You can find the backend code here:
-**[BuddyMD Backend](https://github.com/FarinazCodes/buddymd-backend)**
-
----
-
 ## 🔑 Environment Variables
 To run this project, you need a **Twilio account** and **Firebase authentication**. Create a `.env` file and add:
 
@@ -79,10 +73,18 @@ VITE_FIREBASE_PROJECT_ID=your-firebase-project-id
 VITE_FIREBASE_STORAGE_BUCKET=your-firebase-storage-bucket
 VITE_FIREBASE_MESSAGING_SENDER_ID=your-firebase-sender-id
 VITE_FIREBASE_APP_ID=your-firebase-app-id
+HEALTH_API_BASE_URL=https://health.gov/myhealthfinder/api/v3/
+VITE_API_URL=
+PORT=
 ```
 
 ---
 
+## 🔗 Backend Repository
+This project works alongside a backend service. You can find the backend code here:
+**[BuddyMD Backend](https://github.com/FarinazCodes/buddymd-backend)**
+
+---
 ## 👨‍💻 Author
 - **Farinaz** - [GitHub Profile](https://github.com/FarinazCodes)
 
