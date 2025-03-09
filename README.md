@@ -59,6 +59,11 @@ npm run build
 ```bash
 npm run preview
 ```
+---
+
+## 🔗 Backend Repository
+This project works alongside a backend service. You can find the backend code here:
+**[BuddyMD Backend](https://github.com/FarinazCodes/buddymd-backend)**
 
 ---
 
